@@ -15,16 +15,9 @@ class MoviesList extends Component {
   // MY REFS
   movieRef = createRef();
 
-  // METHODS
   // FOR THE SEARCH TERM
   handleChange = e => {
-    // console.log("======================================");
-    console.log(this.state.movies);
-    // console.log("======================================");
     const searchTerm = e.target.value;
-    // console.log("======================================");
-    console.log(searchTerm);
-    // console.log("======================================");
     const searchedMovies = this.state.movies.map(
       movie => movie.results.title === searchTerm
     );
@@ -35,9 +28,6 @@ class MoviesList extends Component {
   addMovie = e => {
     e.preventDefault();
     const newMovie = this.movieRef.current.value;
-    // console.log("======================================");
-    console.log(newMovie);
-    // console.log("======================================");
     const newFlic = { name: newMovie };
     this.setState({ ...this.state.movies, newFlic });
   };
@@ -47,9 +37,6 @@ class MoviesList extends Component {
     try {
       const res = await fetch(url);
       const movies = await res.json();
-      // console.log(" ======================================");
-      // console.log(movies.results.map(movie => movie.title));
-      // console.log(" ======================================");
       // SETTING STATE
       this.setState({ movies: movies.results });
     } catch (error) {
@@ -59,8 +46,6 @@ class MoviesList extends Component {
 
   render() {
     const { movies } = this.state;
-    console.table(movies);
-
     return (
       <Moviegrid>
         {movies.map(movie => <Movie movie={movie} key={movie.title} />)}
