@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>Layout-1</title>
+ <link rel="stylesheet" href="normalise.css">
+</head>
+
+<body>
+ <div class="container">
+  <div class="item _940">
+   <p>940px</p>
+  </div>
+  <div class="item _460">
+   <p>460px</p>
+  </div>
+  <div class="item _460">
+   <p>460px</p>
+  </div>
+  <div class="item _300">
+   <p>300px</p>
+  </div>
+  <div class="item _300">
+   <p>300px</p>
+  </div>
+  <div class="item _300">
+   <p>300px</p>
+  </div>
+  <div class="item _220">
+   <p>220px</p>
+  </div>
+  <div class="item _220">
+   <p>220px</p>
+  </div>
+  <div class="item _220">
+   <p>220px</p>
+  </div>
+  <div class="item _220">
+   <p>220px</p>
+  </div>
+  <div class="item _140">
+   <p>140px</p>
+  </div>
+  <div class="item _140">
+   <p>140px</p>
+  </div>
+  <div class="item _140">
+   <p>140px</p>
+  </div>
+  <div class="item _140">
+   <p>140px</p>
+  </div>
+  <div class="item _140">
+   <p>140px</p>
+  </div>
+  <div class="item _140">
+   <p>140px</p>
+  </div>
+ </div>
+
+ <style>
+  html {
+   box-sizing: border-box;
+   font-family: 'Operator Mono';
+   font-size: 30px;
+   font-weight: bold;
+   text-align: center;
+   background: orange;
+
+  }
+
+  .container {
+   max-width: 940px;
+   margin: 0 auto;
+   height: 100vh;
+   display: grid;
+   grid-gap: 19px;
+   grid-template-columns: repeat(12, 1fr);
+   grid-template-rows: repeat(5, 1fr);
+  }
+
+  .item {
+   background: rgba(0, 0, 0, 0.349);
+   border-radius: 3px;
+   display: grid;
+   justify-content: center;
+   align-items: center;
+  }
+
+
+  ._940 {
+   grid-column: span 12;
+  }
+
+  ._460 {
+   grid-column: span 6;
+  }
+
+  ._300 {
+   grid-column: span 4;
+  }
+
+  ._220 {
+   grid-column: span 3;
+  }
+
+  ._140 {
+   grid-column: span 2;
+  }
+ </style>
+</body>
+
+</html>
