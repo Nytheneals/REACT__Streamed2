@@ -6,7 +6,7 @@ const messageReducer = (state = initialState, action) => {
   const { type } = action;
   switch (type) {
     case "SALUTIONS":
-      return state;
+      return { ...state, messageVisibility: !state.messageVisibility };
       break;
 
     default:
