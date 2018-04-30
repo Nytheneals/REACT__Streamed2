@@ -1,20 +1,19 @@
+import { GREETINGS, GET_MOVIES } from "../actions/action";
+
 const initialState = {
-  messageVisibility: false
+  messageVisibility: false,
+  movies: []
 };
 
 const messageReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "SALUTIONS":
+    case GREETINGS:
       return { ...state, messageVisibility: !state.messageVisibility };
       break;
 
-    case "SHOW_TEXT":
-      return { ...state, text: payload };
-      break;
-
-    case "SHOW_DELETE":
-      return { ...state, text: payload };
+    case GET_MOVIES:
+      return { ...state, movies: payload };
       break;
 
     default:

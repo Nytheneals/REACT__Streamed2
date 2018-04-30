@@ -4,19 +4,23 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 // ACTION IMPORT
-import { toggleMessage } from "../actions/action";
+import { toggleMessage, getMovies } from "../actions/action";
 
 // MAIN TOGGLE COMPONENT
 class Toggle extends Component {
   handleSubmit = () => {
     return this.props.toggleMessage();
   };
+  handleGet = () => {
+    return this.props.getMovies();
+  };
 
   render() {
     return (
       <Toggled>
         {this.props.messageVisibilty && <p>This has been toggled</p>}
-        <button onClick={this.handleSubmit}>Toggle</button>
+        <button onClick={this.handleSubmit}>TOGGLE</button>
+        <button onClick={this.handleGet}>MOVIES</button>
       </Toggled>
     );
   }
@@ -29,7 +33,10 @@ const mapStateToProps = state => ({
 
 // ACTIONS
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ toggleMessage: toggleMessage }, dispatch);
+  bindActionCreators(
+    { toggleMessage: toggleMessage, getMovies: getMovies },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Toggle);
 
