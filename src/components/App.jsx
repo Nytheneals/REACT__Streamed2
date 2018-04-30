@@ -1,16 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "../reducers/rootReducers";
+import logger from "redux-logger";
 
 import MoviesList from "./MoviesList";
 import MovieDetail from "./MovieDetail";
 import Toggle from "./Toggle";
+import rootReducer from "../reducers/rootReducers";
+
+// MIDDLEWARE
+const middleware = [logger];
 
 // STORE
-const store = createStore(rootReducer, {}, composeWithDevTools());
+const store = createStore(
+  rootReducer,
+  {},
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
 //********************MAIN COMPONENT********************//
 

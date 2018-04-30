@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+// ACTION IMPORT
+import { toggleMessage } from "../actions/action";
+
 // MAIN TOGGLE COMPONENT
 class Toggle extends Component {
   handleSubmit = () => {
@@ -18,9 +21,6 @@ class Toggle extends Component {
     );
   }
 }
-
-// ACTIONS
-import { toggleMessage } from "../actions/action";
 
 // STATE
 const mapStateToProps = state => ({
