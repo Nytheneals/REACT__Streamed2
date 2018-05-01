@@ -15,6 +15,11 @@ class Toggle extends Component {
     return this.props.getMovies();
   };
 
+  componentDidMount() {
+    this.props.toggleMessage();
+    this.props.getMovies();
+  }
+
   render() {
     return (
       <Toggled>
