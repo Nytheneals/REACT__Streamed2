@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import thunk from "redux-thunk";
 
 import MoviesList from "./MoviesList";
@@ -12,7 +12,7 @@ import Toggle from "./Toggle";
 import rootReducer from "../reducers/rootReducers";
 
 // MIDDLEWARE
-const middleware = [logger, thunk];
+const middleware = [thunk];
 
 // STORE
 const store = createStore(

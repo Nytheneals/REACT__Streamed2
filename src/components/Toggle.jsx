@@ -19,6 +19,8 @@ class Toggle extends Component {
   }
 }
 
+// CONNECTING STATE FROM REDUX
+
 // STATE
 const mapStateToProps = state => ({
   messageVisibility: state.message.messageVisibility,

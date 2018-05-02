@@ -13,8 +13,6 @@ const Movie = props => {
         <img srcSet={moviePoster} alt="" />
       </Link>
       <h3>{title}</h3>
-      {/* <h4>{overview}</h4> */}
-      {/* <h5>Released: {release_date}</h5> */}
     </div>
   );
 };
