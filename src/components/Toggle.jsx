@@ -1,39 +1,28 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-// ACTION IMPORT
+// ACTION IMPORT // ============================================================
 import { toggleMessage, getMovies } from "../actions/action";
 
-// MAIN TOGGLE COMPONENT
 class Toggle extends Component {
-  handleSubmit = () => {
-    return this.props.toggleMessage();
-  };
-  handleGet = () => {
-    return this.props.getMovies();
-  };
-
-  componentDidMount() {
-    this.props.toggleMessage();
-    this.props.getMovies();
-  }
-
   render() {
     return (
-      <Toggled>
-        {this.props.messageVisibilty && <p>This has been toggled</p>}
-        <button onClick={this.handleSubmit}>TOGGLE</button>
-        <button onClick={this.handleGet}>MOVIES</button>
-      </Toggled>
+      <div>
+        {this.props.messageVisibility && <h1>This has been toggled</h1>}
+        <button onClick={() => this.props.toggleMessage()}>TOGGLE</button>
+        <button onClick={() => this.props.getMovies()}>MOVIES</button>
+        {console.log(this.props.messageVisibility)}
+        {console.log(this.props.movies)}
+      </div>
     );
   }
 }
 
 // STATE
 const mapStateToProps = state => ({
-  messageVisibilty: state.message.messageVisibilty
+  messageVisibility: state.message.messageVisibility,
+  movies: state.movies.movies
 });
 
 // ACTIONS
@@ -44,8 +33,3 @@ const mapDispatchToProps = dispatch =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Toggle);
-
-const Toggled = styled.div`
-  display: grid;
-  width: 45px;
-`;
