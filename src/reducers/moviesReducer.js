@@ -1,7 +1,8 @@
 import { GET_MOVIES } from "../actions/action";
 
 const initialState = {
-  movies: []
+  movies: [],
+  moviesLoaded: false
 };
 
 const moviesReducer = (state = initialState, action) => {

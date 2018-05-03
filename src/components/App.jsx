@@ -8,7 +8,6 @@ import thunk from "redux-thunk";
 
 import MoviesList from "./MoviesList";
 import MovieDetail from "./MovieDetail";
-import Toggle from "./Toggle";
 import rootReducer from "../reducers/rootReducers";
 
 // MIDDLEWARE
@@ -28,7 +27,6 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <div>
-          <Toggle />
           <Route exact path="/" component={MoviesList} />
           <Route path="/:Id" component={MovieDetail} />
         </div>
