@@ -8,11 +8,18 @@ const Movie = props => {
   const moviePoster = `${POSTER_PATH}${poster_path}`;
   console.log("");
   return (
-    <div>
+    <div className="album">
       <Link to={`/${id}`}>
-        <img srcSet={moviePoster} alt="" />
+        <img className="album__artwork" srcSet={moviePoster} alt="" />{" "}
       </Link>
-      <h3>{title}</h3>
+      <div className="album__details">
+        <h2>{title}</h2>
+        <p className="album__artist">Artist Name</p>
+        <p className="album__desc">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sed
+          sint doloremque repellat, iste debitis.
+        </p>
+      </div>
     </div>
   );
 };
