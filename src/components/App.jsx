@@ -1,8 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {Provider} from "react-redux";
+import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 // import logger from "redux-logger";
 import thunk from "redux-thunk";
 
@@ -14,11 +14,7 @@ import rootReducer from "../reducers/rootReducers";
 const middleware = [thunk];
 
 // STORE
-const store = createStore(
-  rootReducer,
-  {},
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(...middleware)));
 
 //********************MAIN COMPONENT********************//
 
@@ -33,11 +29,11 @@ const App = () => {
                 STR3AM3D
                 <sup>TM</sup>
               </h1>
-              <h4>The Worlds biggest movie database</h4>
+              <h4>[ Cheerios' Movie List ]</h4>
             </div>{" "}
           </Link>
-          <Route exact path="/" component={MoviesList} />
-          <Route path="/:Id" component={MovieDetail} />
+          <Route exact path="/" component={MoviesList}/>
+          <Route path="/:Id" component={MovieDetail}/>
         </div>
       </Router>
     </Provider>
