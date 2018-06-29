@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
-import Form from './Form';
 import { Field, reduxForm } from 'redux-form';
+import Form from './Form';
+import validate from './Validate';
 
-const renderInput = ({ label, input, meta }) => (
+// SMALL
+const renderInputsm = ({ label, input, meta: { touched, error } }) => (
   <div className="_flatInput">
-    <label htmlFor="smsHeader">Merchant (or program) name</label>
-    <input component="input" name="smsHeader" type="text" className="_inputField_sm" />
-  </div>
-);
-
-const renderSelect = ({ label, input, meta }) => (
-  <div className="_flatInput">
-    <label htmlFor="smsHeader">{label}</label>
+    <label htmlFor={label}>{label}</label>
     <input {...input} name="smsHeader" type="text" className="_inputField_sm" />
+    {/* {touched && <span style={{ color: 'red' }}>{value.length}</span>} */}
+    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+  </div>
+);
+// MEDIUM
+const renderInputmd = ({ label, input, meta: { touched, error } }) => (
+  <div className="_flatInput">
+    <label htmlFor={label}>{label}</label>
+    <input {...input} name="smsHeader" type="text" className="_inputField_md" />
+    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
   </div>
 );
 
-const renderTextarea = ({ label, input, meta }) => (
+const renderInputSelect = ({ label, select, meta: { touched, error } }) => (
   <div className="_flatInput">
-    <label htmlFor="smsHeader">Merchant (or program) name</label>
-    <input component="input" name="smsHeader" type="text" className="_inputField_sm" />
+    <label htmlFor={label}>{label}</label>
+    <select {...select} name="smsHeader" type="text" className="_inputField_sm">
+      <option value="1">eGift</option>
+      <option value="2">Loyalty</option>
+      <option value="3">One Gift</option>
+    </select>
+    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+  </div>
+);
+
+const renderInputlg = ({ label, input, meta: { touched, error } }) => (
+  <div className="_flatInput">
+    <label htmlFor={label}>{label}</label>
+    <input {...input} name="smsHeader" type="text" className="_inputField_lg" />
+    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+  </div>
+);
+
+const renderTextArea = ({ label, input, meta: { touched, error } }) => (
+  <div className="_flatInput">
+    <label htmlFor={label}>{label}</label>
+    <textarea {...input} name="smsHeader" type="text" className="_inputField_xlg" />
+    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
   </div>
 );
 
@@ -30,7 +56,13 @@ class NewConfigForm extends Component {
   };
 
   render() {
-    const { handleSubmit, submitting } = this.props;
+    console.log(this.props);
+    const {
+      handleSubmit,
+      submitting,
+      // field: { content },
+    } = this.props;
+    // const length = content.value ? content.value.length : 0;
     return (
       <Form className="container" onSubmit={handleSubmit(this._handleSubmittal)}>
         <p className="_xlgText">Set Up SMS enrollment</p>
@@ -40,33 +72,32 @@ class NewConfigForm extends Component {
           <p className="_lgText">General information</p>
 
           {/* MERCHANT (smsHeader) */}
-          <div className="_flatInput">
-            <label htmlFor="smsHeader">Merchant (or program) name</label>
-            <Field component="input" name="smsHeader" type="text" className="_inputField_sm" />
-          </div>
+          <Field
+            label="Merchant (or program) name"
+            name="smsHeader"
+            component={renderInputsm}
+            // length={length}
+          />
 
           {/* KEYWORD (keyword) */}
-          <div className="_flatInput">
-            <label htmlFor="keyword">Keyword</label>
-            <Field component="input" name="keyword" type="text" className="_inputField_sm" />
-          </div>
+          <Field component="input" label="Keyword" name="keyword" component={renderInputsm} />
 
           {/* REGISTRATION URL (regUrl) */}
-          <div className="_flatInput">
-            <label htmlFor="regUrl">Registration URL</label>
-            <Field component="input" name="regUrl" type="text" className="_inputField_md" />
-          </div>
+          <Field label="Registration URL" name="regUrl" component={renderInputmd} />
 
           {/* SMS FOOTER (smsFooter) */}
-          <div className="_flatInput">
-            <label htmlFor="smsFooter">SMS footer</label>
-            <input component="input" name="smsFooter" type="text" className="_inputField_md" />
-          </div>
+          <Field label="SMS footer" name="smsFooter" component={renderInputmd} />
 
           {/* CARD TEMPLATES (selectedCardTemplateCode) */}
+          {/* <Field
+            label="Card or program"
+            name=" selectedCardTemplateCode"
+            component={renderInputSelect}
+          /> */}
+
           <div className="_flatInput ">
             <label htmlFor="selectedCardTemplateCode">Card or program</label>
-            <Field component="select" name="selectedCardTemplateCode" className="_inputField_sm">
+            <Field name="selectedCardTemplateCode" className="_inputField_sm" component="select">
               <option value="1">eGift</option>
               <option value="2">Loyalty</option>
               <option value="3">One Gift</option>
@@ -79,20 +110,14 @@ class NewConfigForm extends Component {
           <p className="_lgText">Confirmation & Success Messages</p>
 
           {/* DOUBLE OPT IN (doubleOptInMsg) */}
-          <div className="_flatInput">
-            <label htmlFor="doubleOptInMsg">Confirm opt-in</label>
-            <Field component="input" name="doubleOptInMsg" type="text" className="_inputField_lg" />
-          </div>
+          <Field label="Confirm opt-in" name="doubleOptInMsg" component={renderInputlg} />
+
           {/* ENROLLMENT EMAIL (successfulEnrollmentMsg) */}
-          <div className="_flatInput">
-            <label htmlFor="successfulEnrollmentMsg">Enrollment confirmation</label>
-            <Field
-              component="input"
-              name="successfulEnrollmentMsg"
-              type="text"
-              className="_inputField_lg"
-            />
-          </div>
+          <Field
+            label="Enrollment confirmation"
+            component={renderInputlg}
+            name="successfulEnrollmentMsg"
+          />
 
           {/* SECTION 3 */}
           <section className="sectors">
@@ -100,15 +125,7 @@ class NewConfigForm extends Component {
             <p className="_mdText">Other SMS responses a user may receive.</p>
 
             {/* ALREADY ENROLLED (alreadyEnrolledMsg) */}
-            <div className="_flatInput">
-              <label htmlFor="alreadyEnrolledMsg">Already enrolled</label>
-              <Field
-                component="input"
-                name="alreadyEnrolledMsg"
-                type="text"
-                className="_inputField_lg"
-              />
-            </div>
+            <Field label="Already enrolled" name="alreadyEnrolledMsg" component={renderInputlg} />
           </section>
 
           {/* SECTION 4 */}
@@ -120,37 +137,26 @@ class NewConfigForm extends Component {
             </p>
 
             {/* CONNECTIVITY PROBLEMS (connectivityErrorMsg) */}
-            <div className="_flatInput">
-              <label htmlFor="connectivityErrorMsg">Problems with connectivity</label>
-              <Field
-                component="input"
-                name="connectivityErrorMsg"
-                type="text"
-                className="_inputField_lg"
-              />
-            </div>
+            <Field
+              label="Problems with connectivity"
+              name="connectivityErrorMsg"
+              component={renderInputlg}
+            />
 
             {/* UNRECOGNIZABLE COMMAND (unsupportedErrorMsg) */}
-            <div className="_flatInput">
-              <label htmlFor=" unsupportedErrorMsg">Unrecognizable command</label>
-              <Field
-                component="input"
-                name="unsupportedErrorMsg"
-                type="text"
-                className="_inputField_lg"
-              />
-            </div>
+            <Field
+              label="Unrecognizable command"
+              name="unsupportedErrorMsg"
+              component={renderInputlg}
+            />
 
             {/* INVALID (invalidEmailErrorMsg) */}
-            <div className="_flatInput">
-              <label htmlFor=" invalidEmailErrorMsg">Invalid or no email address</label>
-              <Field
-                component="input"
-                name="invalidEmailErrorMsg"
-                type="text"
-                className="_inputField_lg"
-              />
-            </div>
+
+            <Field
+              label="Invalid or no email address"
+              name="invalidEmailErrorMsg"
+              component={renderInputlg}
+            />
           </section>
 
           {/* SECTION 5 */}
@@ -161,48 +167,29 @@ class NewConfigForm extends Component {
 
             <div className="_emailSection">
               {/* REPLY TO (enrollmentEmailReplyTo) */}
-              <div className="_flatInput">
-                <label htmlFor="enrollmentEmailReplyTo">Reply to:Email address</label>
-                <Field
-                  component="input"
-                  name="enrollmentEmailReplyTo"
-                  type="text"
-                  className="_inputField_sm"
-                />
-              </div>
+              <Field
+                label="Reply to:Email address"
+                name="enrollmentEmailReplyTo"
+                component={renderInputsm}
+              />
 
               {/* SENT FROM (enrollmentEmailFrom) */}
-              <div className="_flatInput">
-                <label htmlFor="enrollmentEmailFrom">Sent from:Email address</label>
-                <Field
-                  component="input"
-                  name="enrollmentEmailFrom"
-                  type="text"
-                  className="_inputField_sm"
-                />
-              </div>
+              <Field
+                label="Sent from:Email address"
+                name="enrollmentEmailFrom"
+                component={renderInputsm}
+              />
             </div>
           </section>
           {/* EMAIL SUBJECT (enrollmentEmailSubject) */}
-          <div className="_flatInput">
-            <label htmlFor="enrollmentEmailSubject">Email subject line</label>
-            <Field
-              component="input"
-              name="enrollmentEmailSubject"
-              type="text"
-              className="_inputField_md"
-            />
-          </div>
+          <Field
+            label="Email subject line"
+            name="enrollmentEmailSubject"
+            component={renderInputsm}
+          />
 
-          <div className="_flatInput">
-            <label htmlFor=" textForEnrollment">Email text</label>
-            <Field
-              component="textarea"
-              name="textForEnrollment"
-              type="text"
-              className="_inputField_xlg"
-            />
-          </div>
+          {/* TEXT AREA */}
+          <Field label="Email text" name="textForEnrollment" component={renderTextArea} />
         </section>
         <button type="submit" className="_smsbtn" disabled={submitting}>
           Save program settings
@@ -213,7 +200,7 @@ class NewConfigForm extends Component {
 }
 
 export default reduxForm({
-  // validate,
+  validate,
   form: 'PostNewConfigForm',
   destroyOnUnmount: false,
 })(NewConfigForm);

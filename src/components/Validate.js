@@ -3,8 +3,13 @@ export default function validate(values) {
   const errors = {};
   // validate the inputs from "values"
   if (!values.smsHeader) {
-    errors.smsHeader = 'Enter a smsHeader';
+    errors.smsHeader = 'Enter a merchant please or else no vibranium';
   }
+
+  if (values.smsHeader && values.smsHeader.length > 7) {
+    errors.smsHeader = `${values.smsHeader.length} is the count`;
+  }
+
   if (!values.smsFooter) {
     errors.smsFooter = 'Enter a smsFooter';
   }
