@@ -2,52 +2,59 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Form from './Form';
 import validate from './Validate';
+import {
+  renderInputsm,
+  renderInputmd,
+  renderInputSelect,
+  renderInputlg,
+  renderTextArea,
+} from './formCreators.js';
 
-// SMALL
-const renderInputsm = ({ label, input, meta: { touched, error } }) => (
-  <div className="_flatInput">
-    <label htmlFor={label}>{label}</label>
-    <input {...input} name="smsHeader" type="text" className="_inputField_sm" />
-    {/* {touched && <span style={{ color: 'red' }}>{value.length}</span>} */}
-    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
-  </div>
-);
-// MEDIUM
-const renderInputmd = ({ label, input, meta: { touched, error } }) => (
-  <div className="_flatInput">
-    <label htmlFor={label}>{label}</label>
-    <input {...input} name="smsHeader" type="text" className="_inputField_md" />
-    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
-  </div>
-);
+// // SMALL
+// const renderInputsm = ({ label, input, meta: { touched, error } }) => (
+//   <div className="_flatInput">
+//     <label htmlFor={label}>{label}</label>
+//     <input {...input} name="smsHeader" type="text" className="_inputField_sm" />
+//     {/* {touched && <span style={{ color: 'red' }}>{value.length}</span>} */}
+//     {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+//   </div>
+// );
+// // MEDIUM
+// const renderInputmd = ({ label, input, meta: { touched, error } }) => (
+//   <div className="_flatInput">
+//     <label htmlFor={label}>{label}</label>
+//     <input {...input} name="smsHeader" type="text" className="_inputField_md" />
+//     {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+//   </div>
+// );
 
-const renderInputSelect = ({ label, select, meta: { touched, error } }) => (
-  <div className="_flatInput">
-    <label htmlFor={label}>{label}</label>
-    <select {...select} name="smsHeader" type="text" className="_inputField_sm">
-      <option value="1">eGift</option>
-      <option value="2">Loyalty</option>
-      <option value="3">One Gift</option>
-    </select>
-    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
-  </div>
-);
+// const renderInputSelect = ({ label, select, meta: { touched, error } }) => (
+//   <div className="_flatInput">
+//     <label htmlFor={label}>{label}</label>
+//     <select {...select} name="smsHeader" type="text" className="_inputField_sm">
+//       <option value="1">eGift</option>
+//       <option value="2">Loyalty</option>
+//       <option value="3">One Gift</option>
+//     </select>
+//     {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+//   </div>
+// );
 
-const renderInputlg = ({ label, input, meta: { touched, error } }) => (
-  <div className="_flatInput">
-    <label htmlFor={label}>{label}</label>
-    <input {...input} name="smsHeader" type="text" className="_inputField_lg" />
-    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
-  </div>
-);
+// const renderInputlg = ({ label, input, meta: { touched, error } }) => (
+//   <div className="_flatInput">
+//     <label htmlFor={label}>{label}</label>
+//     <input {...input} name="smsHeader" type="text" className="_inputField_lg" />
+//     {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+//   </div>
+// );
 
-const renderTextArea = ({ label, input, meta: { touched, error } }) => (
-  <div className="_flatInput">
-    <label htmlFor={label}>{label}</label>
-    <textarea {...input} name="smsHeader" type="text" className="_inputField_xlg" />
-    {touched && error && <span style={{ color: 'red' }}>{error}</span>}
-  </div>
-);
+// const renderTextArea = ({ label, input, meta: { touched, error } }) => (
+//   <div className="_flatInput">
+//     <label htmlFor={label}>{label}</label>
+//     <textarea {...input} name="smsHeader" type="text" className="_inputField_xlg" />
+//     {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+//   </div>
+// );
 
 class NewConfigForm extends Component {
   // RENDER FUNCTION
