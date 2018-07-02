@@ -1,5 +1,5 @@
 export default function validate(values) {
-  console.log(values);
+  console.log({ ...values });
   const errors = {};
 
   // validate the inputs from "values"
@@ -7,20 +7,22 @@ export default function validate(values) {
     errors.smsHeader = 'Enter a merchant please';
   }
 
-  if (values.smsHeader && values.smsHeader.length > 0) {
-    errors.smsHeader = `${148 - values.smsHeader.length} characters remaining`;
-  }
-
-  if (values.smsHeader && values.smsHeader.length > 148) {
-    errors.smsHeader = `You have reached the max character count`;
-  }
-
-  // if (values.smsHeader && values.smsHeader.length > 1) {
-  //   const max = 148;
-  //   const rem = `${max}-${values.smsHeader.length}`;
-  //   errors.smsHeader = sub(max, rem);
-  //   // `characters remaining`;
+  // if (values.smsHeader && values.smsHeader.length > 0) {
+  //   errors.smsHeader = `${148 - values.smsHeader.length} characters remaining`;
   // }
+
+  // if (values.smsHeader && values.smsHeader.length > 148) {
+  //   errors.smsHeader = `You have reached the max character count`;
+  // }
+
+  if (values.smsHeader) {
+    if (values.smsHeader.length > 0) {
+      errors.smsHeader = `${148 - values.smsHeader.length} characters remaining`;
+    }
+    if (values.smsHeader.length > 148) {
+      errors.smsHeader = `You have reached the max character count`;
+    }
+  }
 
   if (!values.smsFooter) {
     errors.smsFooter = 'Enter a smsFooter';
