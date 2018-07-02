@@ -1,14 +1,26 @@
 export default function validate(values) {
-  // console.log(values);
+  console.log(values);
   const errors = {};
+
   // validate the inputs from "values"
   if (!values.smsHeader) {
-    errors.smsHeader = 'Enter a merchant please or else no vibranium';
+    errors.smsHeader = 'Enter a merchant please';
   }
 
-  if (values.smsHeader && values.smsHeader.length > 7) {
-    errors.smsHeader = `${values.smsHeader.length} is the count`;
+  if (values.smsHeader && values.smsHeader.length > 0) {
+    errors.smsHeader = `${148 - values.smsHeader.length} characters remaining`;
   }
+
+  if (values.smsHeader && values.smsHeader.length > 148) {
+    errors.smsHeader = `You have reached the max character count`;
+  }
+
+  // if (values.smsHeader && values.smsHeader.length > 1) {
+  //   const max = 148;
+  //   const rem = `${max}-${values.smsHeader.length}`;
+  //   errors.smsHeader = sub(max, rem);
+  //   // `characters remaining`;
+  // }
 
   if (!values.smsFooter) {
     errors.smsFooter = 'Enter a smsFooter';
@@ -37,8 +49,17 @@ export default function validate(values) {
   if (!values.regUrl) {
     errors.regUrl = 'Enter a regUrl';
   }
+
+  // EMAIL CHECKER
+  if (
+    values.enrollmentEmailSubject &&
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.enrollmentEmailSubject)
+  ) {
+    errors.enrollmentEmailSubject = "Oh that's an Invalid email address";
+  }
+
   if (!values.enrollmentEmailSubject) {
-    errors.enrollmentEmailSubject = 'Enter a enrollmentEmailSubject';
+    errors.enrollmentEmailSubject = 'Please email subject line';
   }
   if (!values.enrollmentEmailFrom) {
     errors.enrollmentEmailFrom = 'Enter a enrollmentEmailFrom';

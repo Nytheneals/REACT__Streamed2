@@ -1,12 +1,13 @@
 import React from 'react';
 
 // SMALL
-export const renderInputsm = ({ label, input, meta: { touched, error } }) => (
+export const renderInputsm = ({ label, input, meta: { touched, active, error } }) => (
   <div className="_flatInput">
     <label htmlFor={label}>{label}</label>
     <input {...input} name="smsHeader" type="text" className="_inputField_sm" />
     {/* {touched && <span style={{ color: 'red' }}>{value.length}</span>} */}
     {touched && error && <span style={{ color: 'red' }}>{error}</span>}
+    {active && <span style={{ color: 'red' }}>hejgeuwyeiwue</span>}
   </div>
 );
 // MEDIUM
@@ -18,7 +19,7 @@ export const renderInputmd = ({ label, input, meta: { touched, error } }) => (
   </div>
 );
 
-export const renderInputSelect = ({ label, select, meta: { touched, error } }) => (
+export const renderInputSelect = ({ label, select, meta: { touched, error, active } }) => (
   <div className="_flatInput">
     <label htmlFor={label}>{label}</label>
     <select {...select} name="smsHeader" type="text" className="_inputField_sm">
